@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>플라톤의 영혼 삼분설 — 내 머릿속 회의 시뮬레이터</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Jua&family=Titan+One&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+    
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    
+    .font-jua {
+      font-family: 'Jua', sans-serif;
+    }
+
+    .font-badge {
+      font-family: 'Titan One', 'Jua', sans-serif;
+      letter-spacing: 0.05em;
+    }
+
+    input:focus::placeholder,
+    textarea:focus::placeholder {
+      color: transparent !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #64748b !important;
+      font-weight: 400;
+      transition: color 0.15s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-[#0b1120] text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+  <!-- 상단 네비게이션 헤더 -->
+  <header class="border-b border-slate-800/80 bg-[#0f172a]/90 backdrop-blur sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl">🏛️</span>
+        <div>
+          <h1 class="font-jua text-xl text-amber-400">플라톤 영혼 삼분설 시뮬레이터</h1>
+          <p class="text-xs text-slate-400">이성(Logistikon) · 기개(Thymoeides) · 욕구(Epithymetikon)</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5" id="nav-steps">
+        <span class="px-3.5 py-1 rounded-full text-xs font-jua bg-indigo-500/20 text-indigo-300 border border-indigo-500/30" id="step-badge">Phase 1. 세 명의 등장인물 알아보기</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 인터랙션 영역 -->
+  <main class="max-w-5xl mx-auto w-full px-4 py-8 flex-1 flex flex-col justify-center">
+
+    <!-- [단계 1] 세 명의 등장인물 소개 -->
+    <section id="stage-1" class="space-y-8">
+      <div class="text-center space-y-3">
+        <span class="inline-block px-4 py-1 rounded-full bg-[#1e293b] text-xs font-jua text-indigo-300 border border-indigo-500/40 shadow-sm">
+          Phase 1. 세 명의 등장인물 알아보기
+        </span>
+        <h2 class="font-jua text-3xl md:text-5xl text-white tracking-wide">
+          내 마음속에는 언제나 세 명의 대표가 살고 있다!
+        </h2>
+        <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <span class="block">고대 철학자 플라톤은 인간의 마음(영혼)이 하나의 목소리가 아니라,</span>
+          <span class="block mt-1">서로 다른 관심사를 가진 <span class="text-sky-400 font-bold">이성</span>, <span class="text-orange-400 font-bold">기개</span>, <span class="text-amber-400 font-bold">욕구</span>의 세 부분으로 이루어져 있다고 보았습니다.</span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        
+        <!-- 🧠 이성 카드 -->
+        <div class="relative bg-[#0f172a] border-2 border-sky-500/50 rounded-3xl p-6 pt-8 hover:border-sky-400 transition-all flex flex-col justify-between shadow-xl shadow-sky-950/40">
+          <div class="absolute -top-4 left-6 px-4 py-1 rounded-full bg-sky-500 text-[#0b1120] text-xs font-badge font-black tracking-wider shadow-md">
+            LOGISTIKON
+          </div>
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-[#1e293b] flex items-center justify-center text-4xl mb-4 border border-slate-700">
+              🧠
+            </div>
+            <h3 class="font-jua text-2xl text-sky-300">이성적 부분</h3>
+            <p class="font-jua text-sm text-slate-400 mb-4">「현실적인 전략가」</p>
+            <div class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+              <p><strong class="text-sky-400 font-bold">관심:</strong> 무엇이 진정으로 나에게 좋은가?</p>
+              <ul class="list-disc list-inside space-y-1 text-slate-400">
+                <li>장기적인 결과를 깊이 생각한다.</li>
+                <li>무엇이 옳고 좋은지를 합리적으로 판단한다.</li>
+                <li>맹목적인 욕구와 감정을 조절하려 한다.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 p-3.5 rounded-2xl bg-sky-950/40 border border-sky-800/40 text-xs">
+            <span class="font-jua text-xs text-sky-300 block mb-1">🗣️ 대표 대사</span>
+            <p class="text-slate-200 italic font-medium leading-relaxed">“잠깐의 즐거움보다 내일 시험을 준비하는 게 나에게 더 좋아.”</p>
+          </div>
+        </div>
+
+        <!-- 🔥 기개 카드 -->
+        <div class="relative bg-[#0f172a] border-2 border-orange-500/50 rounded-3xl p-6 pt-8 hover:border-orange-400 transition-all flex flex-col justify-between shadow-xl shadow-orange-950/40">
+          <div class="absolute -top-4 left-6 px-4 py-1 rounded-full bg-orange-500 text-[#0b1120] text-xs font-badge font-black tracking-wider shadow-md">
+            THYMOEIDES
+          </div>
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-[#1e293b] flex items-center justify-center text-4xl mb-4 border border-slate-700">
+              🔥
+            </div>
+            <h3 class="font-jua text-2xl text-orange-300">기개적 부분</h3>
+            <p class="font-jua text-sm text-slate-400 mb-4">「자존심과 명예의 수호자」</p>
+            <div class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+              <p><strong class="text-orange-400 font-bold">관심:</strong> 명예, 자존심, 용기, 분노</p>
+              <ul class="list-disc list-inside space-y-1 text-slate-400">
+                <li>“나를 무시해?”, “이건 너무 억울한데?”</li>
+                <li>“이번에는 반드시 해내고 싶어!”</li>
+                <li>부당함에 분노하며 명예와 정의를 지키려 한다.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 p-3.5 rounded-2xl bg-orange-950/40 border border-orange-800/40 text-xs">
+            <span class="font-jua text-xs text-orange-300 block mb-1">🗣️ 대표 대사</span>
+            <p class="text-slate-200 italic font-medium leading-relaxed">“내가 이것도 못 해? 이번에는 반드시 보여주겠어.”</p>
+          </div>
+        </div>
+
+        <!-- 🍕 욕구 카드 -->
+        <div class="relative bg-[#0f172a] border-2 border-amber-500/50 rounded-3xl p-6 pt-8 hover:border-amber-400 transition-all flex flex-col justify-between shadow-xl shadow-amber-950/40">
+          <div class="absolute -top-4 left-6 px-4 py-1 rounded-full bg-amber-400 text-[#0b1120] text-xs font-badge font-black tracking-wider shadow-md">
+            EPITHYMETIKON
+          </div>
+          <div>
+            <div class="w-16 h-16 rounded-2xl bg-[#1e293b] flex items-center justify-center text-4xl mb-4 border border-slate-700">
+              🍕
+            </div>
+            <h3 class="font-jua text-2xl text-amber-300">욕구적 부분</h3>
+            <p class="font-jua text-sm text-slate-400 mb-4">「지금 당장 행복해」</p>
+            <div class="space-y-2.5 text-xs text-slate-300 border-t border-slate-800 pt-3">
+              <p><strong class="text-amber-400 font-bold">관심:</strong> 즉각적인 쾌락과 본능 충족</p>
+              <ul class="list-disc list-inside space-y-1 text-slate-400">
+                <li>먹고 싶다, 놀고 싶다, 자고 싶다!</li>
+                <li>사고 싶다, 편해지고 싶다!</li>
+                <li>미래의 손해보다 지금 당장의 즐거움을 추구한다.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mt-6 p-3.5 rounded-2xl bg-amber-950/40 border border-amber-800/40 text-xs">
+            <span class="font-jua text-xs text-amber-300 block mb-1">🗣️ 대표 대사</span>
+            <p class="text-slate-200 italic font-medium leading-relaxed">“시험은 내일이고, 지금 당장 신나게 놀 수 있잖아!”</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center pt-4">
+        <button onclick="goToStage(2)" class="font-jua text-lg px-8 py-3.5 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/40 hover:scale-105 active:scale-95 transition-all">
+          활동 시작하기: 「내 머릿속 회의」 열기 ➔
+        </button>
+      </div>
+    </section>
+
+    <!-- [단계 2 & 3] 상황 선택 및 머릿속 회의 작성 (총 4개 상황) -->
+    <section id="stage-2" class="hidden space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-800 pb-4">
+        <div>
+          <span class="font-jua text-xs text-indigo-400">Phase 2. 핵심 활동 — 「내 머릿속 회의」</span>
+          <h2 class="font-jua text-2xl md:text-3xl text-white">상황 카드를 선택하고 세 목소리를 작성해보세요</h2>
+        </div>
+        <div class="flex flex-wrap gap-1.5" id="scenario-tabs"></div>
+      </div>
+
+      <!-- 선택된 상황 카드 -->
+      <div class="p-5 rounded-3xl bg-gradient-to-r from-slate-900 to-indigo-950/40 border-2 border-slate-800 flex items-start gap-4">
+        <span class="text-3xl p-3 bg-slate-800/80 rounded-2xl" id="scenario-icon">🎮</span>
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="font-jua text-xs px-2.5 py-0.5 rounded-lg bg-indigo-500 text-white" id="scenario-tag">상황 A</span>
+            <span class="text-xs text-slate-400 font-medium" id="scenario-subtitle">일상적 갈등 상황</span>
+          </div>
+          <p class="text-base md:text-lg font-bold text-slate-100" id="scenario-desc">시험기간이다. 친구가 “오늘 밤 같이 게임하자”고 한다.</p>
+        </div>
+      </div>
+
+      <!-- 세 부분 대사 작성 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- 🧠 이성 -->
+        <div class="p-4 rounded-3xl bg-[#0f172a] border-2 border-sky-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-jua text-lg text-sky-300 flex items-center gap-1.5">🧠 이성 (전략가)</span>
+              <button onclick="fillExample('rational')" class="text-xs font-bold text-sky-400 hover:text-sky-200 underline">예시 대사</button>
+            </div>
+            <p class="text-xs text-slate-400 mb-3">형식: “나는 [행동]해야 해. 왜냐하면 [이유]이기 때문이야.”</p>
+            <div class="space-y-2 text-xs">
+              <div>
+                <label class="text-slate-400 font-bold block mb-1">해야 할 행동</label>
+                <input type="text" id="input-rational-act" oninput="saveCurrentScenarioData()" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-sky-400 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-slate-400 font-bold block mb-1">그 이유</label>
+                <textarea id="input-rational-reason" oninput="saveCurrentScenarioData()" rows="2" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-sky-400 focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 p-3 rounded-2xl bg-sky-950/40 border border-sky-900/40 text-xs text-sky-200">
+            <span class="font-bold block text-[11px] text-sky-400 mb-0.5">합쳐진 목소리:</span>
+            <p id="preview-rational" class="italic">“나는 ______해야 해. 왜냐하면 ______.”</p>
+          </div>
+        </div>
+
+        <!-- 🔥 기개 -->
+        <div class="p-4 rounded-3xl bg-[#0f172a] border-2 border-orange-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-jua text-lg text-orange-300 flex items-center gap-1.5">🔥 기개 (자존심·명예)</span>
+              <button onclick="fillExample('spirited')" class="text-xs font-bold text-orange-400 hover:text-orange-200 underline">예시 대사</button>
+            </div>
+            <p class="text-xs text-slate-400 mb-3">형식: “나는 [행동]하고 싶어. 왜냐하면 [자존심·명예 이유].”</p>
+            <div class="space-y-2 text-xs">
+              <div>
+                <label class="text-slate-400 font-bold block mb-1">하고 싶은 행동</label>
+                <input type="text" id="input-spirited-act" oninput="saveCurrentScenarioData()" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-orange-400 focus:outline-none">
+              </div>
+              <div>
+                <label class="text-slate-400 font-bold block mb-1">자존심/명예의 이유</label>
+                <textarea id="input-spirited-reason" oninput="saveCurrentScenarioData()" rows="2" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-orange-400 focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 p-3 rounded-2xl bg-orange-950/40 border border-orange-900/40 text-xs text-orange-200">
+            <span class="font-bold block text-[11px] text-orange-400 mb-0.5">합쳐진 목소리:</span>
+            <p id="preview-spirited" class="italic">“나는 ______하고 싶어. 왜냐하면 ______.”</p>
+          </div>
+        </div>
+
+        <!-- 🍕 욕구 -->
+        <div class="p-4 rounded-3xl bg-[#0f172a] border-2 border-amber-500/30 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-jua text-lg text-amber-300 flex items-center gap-1.5">🍕 욕구 (지금 쾌락)</span>
+              <button onclick="fillExample('appetitive')" class="text-xs font-bold text-amber-400 hover:text-amber-200 underline">예시 대사</button>
+            </div>
+            <p class="text-xs text-slate-400 mb-3">형식: “나는 당장 [즉각적 욕망]하고 싶어!”</p>
+            <div class="space-y-2 text-xs">
+              <div>
+                <label class="text-slate-400 font-bold block mb-1">지금 당장 바라는 것</label>
+                <textarea id="input-appetitive-act" oninput="saveCurrentScenarioData()" rows="4" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-amber-400 focus:outline-none"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 p-3 rounded-2xl bg-amber-950/40 border border-amber-900/40 text-xs text-amber-200">
+            <span class="font-bold block text-[11px] text-amber-400 mb-0.5">합쳐진 목소리:</span>
+            <p id="preview-appetitive" class="italic">“나는 당장 ______하고 싶어!”</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ④ 실제 선택 분석 -->
+      <div class="p-5 rounded-3xl bg-[#0f172a] border-2 border-indigo-500/40 space-y-4">
+        <div class="border-b border-slate-800 pb-2">
+          <span class="font-jua text-xs text-indigo-400">Phase 3. 그런데 실제 나는 무엇을 선택했을까?</span>
+          <h3 class="font-jua text-xl text-white">나의 실제 결정과 동기 분석</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-bold text-slate-300 block mb-1.5">1. 실제 행동을 결정한 부분은 누구였나요?</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button onclick="setWinner('이성')" id="btn-win-이성" class="win-btn font-jua p-2.5 rounded-2xl border-2 border-slate-700 text-xs hover:border-sky-400 flex items-center justify-center gap-1 transition-all">🧠 이성</button>
+              <button onclick="setWinner('기개')" id="btn-win-기개" class="win-btn font-jua p-2.5 rounded-2xl border-2 border-slate-700 text-xs hover:border-orange-400 flex items-center justify-center gap-1 transition-all">🔥 기개</button>
+              <button onclick="setWinner('욕구')" id="btn-win-욕구" class="win-btn font-jua p-2.5 rounded-2xl border-2 border-slate-700 text-xs hover:border-amber-400 flex items-center justify-center gap-1 transition-all">🍕 욕구</button>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs font-bold text-slate-300 block mb-1.5">2. 나는 결국 무엇을 했나요?</label>
+            <input type="text" id="input-actual-choice" oninput="saveCurrentScenarioData()" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-indigo-400 focus:outline-none">
+          </div>
+        </div>
+
+        <div>
+          <label class="text-xs font-bold text-slate-300 block mb-1.5">3. 왜 그 선택을 했을까요? (내면의 진짜 이유)</label>
+          <textarea id="input-actual-reason" oninput="saveCurrentScenarioData()" rows="2" placeholder="" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 text-xs focus:border-indigo-400 focus:outline-none"></textarea>
+        </div>
+      </div>
+
+      <!-- 하단 네비게이션 버튼 -->
+      <div class="flex items-center justify-between pt-2">
+        <div class="flex items-center gap-3">
+          <button onclick="goToStage(1)" class="font-jua text-xs text-slate-400 hover:text-white px-2 py-2">⬅️ 캐릭터 도감</button>
+          <button id="btn-prev-scenario" onclick="goToPrevScenario()" class="hidden font-jua text-xs text-indigo-300 hover:text-white px-3 py-2 rounded-xl bg-slate-800 border border-slate-700">
+            ⬅️ 이전 상황으로
+          </button>
+        </div>
+        <button id="btn-next-action" onclick="handleNextAction()" class="font-jua text-sm md:text-base px-6 md:px-8 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/40 hover:scale-105 active:scale-95 transition-all flex items-center gap-2">
+          <span id="next-action-text">저장 및 다음 상황으로 넘어가기</span>
+          <span>➔</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- [단계 4] 최종 성찰 리포트 (총 4개 상황 집계) -->
+    <section id="stage-3" class="hidden space-y-6">
+      <div class="text-center space-y-1">
+        <h2 class="font-jua text-3xl md:text-5xl text-white tracking-wide">플라톤의 마차 비유와 나의 영혼 조화도</h2>
+        <p class="text-xs md:text-sm text-slate-400 font-medium">내 영혼의 마차는 어디로 향하고 있을까요?</p>
+      </div>
+
+      <!-- 플라톤의 마차 비유 카드 -->
+      <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-900 border-2 border-indigo-500/30 shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center items-center">
+          <div class="p-4 rounded-2xl bg-slate-950/70 border border-sky-500/30">
+            <span class="font-jua text-lg text-sky-300 block mb-1">🧙‍♂️ 마부 (이성)</span>
+            <p class="text-xs text-sky-200 font-bold">목적지를 정하고 고삐를 쥔 자</p>
+            <p class="text-[11px] text-slate-400 mt-1">두 마리의 말을 지혜롭게 통제하며 올바른 길로 이끔</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-950/70 border border-orange-500/30">
+            <span class="font-jua text-lg text-orange-300 block mb-1">🐎 백마 (기개)</span>
+            <p class="text-xs text-orange-200 font-bold">명예와 용기의 고결한 말</p>
+            <p class="text-[11px] text-slate-400 mt-1">마부의 명령을 잘 따르며 힘차게 앞으로 나아감</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-950/70 border border-amber-500/30">
+            <span class="font-jua text-lg text-amber-300 block mb-1">🦓 흑마 (욕구)</span>
+            <p class="text-xs text-amber-200 font-bold">본능과 쾌락의 거친 말</p>
+            <p class="text-[11px] text-slate-400 mt-1">마부의 통제를 벗어나 풀밭으로만 달려가려 함</p>
+          </div>
+        </div>
+
+        <div class="mt-6 pt-5 border-t border-slate-800 text-xs md:text-sm text-slate-300 leading-relaxed text-center max-w-2xl mx-auto">
+          <strong class="font-jua text-amber-300 text-base block mb-1">플라톤이 말하는 '정의(Dikaiosyne)'란?</strong>
+          이성이 기개의 협력을 얻어 욕구를 올바르게 절제시키고, 세 부분이 각자의 고유한 탁월함(지혜·용기·절제)을 발휘하여 조화를 이룰 때 비로소 진정한 행복에 도달합니다.
+        </div>
+      </div>
+
+      <!-- 4가지 상황 속 나의 주도적 목소리 분포 -->
+      <div class="p-6 rounded-3xl bg-[#0f172a] border-2 border-slate-800 space-y-4">
+        <h3 class="font-jua text-lg text-white flex items-center gap-2">
+          <span>📊</span> 4가지 상황 속 나의 주도적 목소리 분포
+        </h3>
+        <div class="grid grid-cols-3 gap-4 text-center" id="stat-boxes"></div>
+      </div>
+
+      <!-- 정리 핵심 교훈 카드 -->
+      <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-r from-indigo-950/70 via-slate-900 to-indigo-950/70 border-2 border-indigo-500/50 shadow-2xl">
+        <div class="flex items-center gap-3 mb-4 border-b border-indigo-900/60 pb-3">
+          <span class="text-2xl">✨</span>
+          <h3 class="font-jua text-xl text-amber-300 tracking-wide">활동을 마치며: 참된 영혼의 조화</h3>
+        </div>
+        
+        <div class="space-y-3.5 text-sm md:text-base text-slate-200 leading-relaxed">
+          <p class="flex items-start gap-2.5">
+            <span class="text-indigo-400 font-bold mt-0.5">•</span>
+            <span><strong class="text-indigo-300">“이성이 통치해야 한다”</strong>는 것은 다른 부분을 억누르는 독재가 아니라, 영혼 전체를 위한 <strong class="text-white">지혜롭고 조화로운 협력</strong>을 뜻합니다.</span>
+          </p>
+          <p class="flex items-start gap-2.5">
+            <span class="text-orange-400 font-bold mt-0.5">•</span>
+            <span><strong class="text-orange-300">기개</strong>는 이성의 올바른 원칙을 흔들림 없이 지켜내는 용기가 되고, <strong class="text-amber-300">욕구</strong>는 적절히 충족될 때 우리 삶을 지탱하는 생존과 활력의 바탕이 됩니다.</span>
+          </p>
+          <div class="pt-3 mt-3 border-t border-slate-800/80">
+            <p class="font-jua text-base md:text-lg text-sky-200 text-center">
+              “영혼의 정의는 이 세 부분이 저마다의 제 역할을 다하며 아름답게 조화를 이룰 때 완성됩니다.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="goToStage(2)" class="font-jua text-xs text-indigo-400 hover:text-indigo-200 underline">
+          ✏️ 상황별 대사 수정하러 가기
+        </button>
+        <button onclick="restartSimulation()" class="font-jua text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700">
+          🔄 처음부터 다시 하기
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-900 bg-[#070d18] py-3 text-center text-xs text-slate-500">
+    플라톤 『국가론』 영혼 삼분설 교육용 시뮬레이션 | 이성(Logistikon) · 기개(Thymoeides) · 욕구(Epithymetikon)
+  </footer>
+
+  <script>
+    // 총 4가지 상황 (A, B, C, D)으로 재편성
+    const scenarios = [
+      {
+        id: 'A',
+        icon: '🎮',
+        title: '상황 A: 시험기간 게임 유혹',
+        desc: '시험기간이다. 친구가 “오늘 밤 같이 게임하자”고 한다.',
+        placeholders: {
+          rAct: '예: 게임을 거절하고 시험공부를',
+          rRea: '예: 내일 시험을 잘 보는 것이 장기적으로 훨씬 이롭기',
+          sAct: '예: 이번 시험에서 최고의 성적을 내',
+          sRea: '예: 친구들에게 내 진짜 실력을 당당히 보여주고 싶기',
+          aAct: '예: 지금 당장 친구랑 게임하면서 신나게 스트레스를 풀',
+          choice: '예: 1시간만 게임하고 밤 11시부터 공부했다.',
+          reason: '예: 친구와의 유대감도 챙기면서 시험에 대한 불안을 해소하려 타협함.'
+        },
+        rational: { act: '', reason: '' },
+        spirited: { act: '', reason: '' },
+        appetitive: { act: '' },
+        actualChoice: '',
+        actualReason: '',
+        winner: ''
+      },
+      {
+        id: 'B',
+        icon: '📱',
+        title: '상황 B: SNS 저격글 갈등',
+        desc: 'SNS에 친구가 나를 은근히 비꼬는 글을 올렸다.',
+        placeholders: {
+          rAct: '예: 감정적으로 반응하지 않고 대화를 시도',
+          rRea: '예: 공개적인 싸움은 내 평판과 관계를 망칠 뿐이기',
+          sAct: '예: 바로 찾아가서 따지고 사과를 받아내',
+          sRea: '예: 나를 무시하는 태도를 도저히 용납할 수 없기',
+          aAct: '예: 그냥 맛있는 거 먹고 다른 재밌는 영상 보면서 도망치',
+          choice: '예: 개인 메시지로 직접 물어보고 솔직하게 풀었다.',
+          reason: '예: 화는 났지만 문제를 키우고 싶지 않았다.'
+        },
+        rational: { act: '', reason: '' },
+        spirited: { act: '', reason: '' },
+        appetitive: { act: '' },
+        actualChoice: '',
+        actualReason: '',
+        winner: ''
+      },
+      {
+        id: 'C',
+        icon: '👥',
+        title: '상황 C: 모둠 활동 의견 무시',
+        desc: '모둠 활동에서 다른 친구들이 내 의견을 무시했다.',
+        placeholders: {
+          rAct: '예: 근거 자료를 준비해 차분하게 다시 설득',
+          rRea: '예: 모둠 과제의 성공이 내 점수에도 직결되기',
+          sAct: '예: 내 기여도를 명확히 짚으며 강하게 항의',
+          sRea: '예: 내 존재감과 노력을 짓밟히는 것을 참을 수 없기',
+          aAct: '예: 에라 모르겠다 하고 아무것도 안 하고 엎드려 자',
+          choice: '예: 쉬는 시간에 조장에게 따로 의견을 전달했다.',
+          reason: '예: 감정싸움으로 번지지 않으면서 의견을 반영하기 위해.'
+        },
+        rational: { act: '', reason: '' },
+        spirited: { act: '', reason: '' },
+        appetitive: { act: '' },
+        actualChoice: '',
+        actualReason: '',
+        winner: ''
+      },
+      {
+        id: 'D',
+        icon: '⚽',
+        title: '상황 D: 경기 중 심판의 반칙 묵인',
+        desc: '운동 경기에서 상대 팀이 반칙을 했지만 심판이 보지 못했다.',
+        placeholders: {
+          rAct: '예: 규정에 맞게 주장에게 심판 면담을 요청',
+          rRea: '예: 흥분해서 소란을 피우면 우리 팀만 손해를 보기',
+          sAct: '예: 심판에게 달려가 정당하게 판정을 바로잡으라고 외치',
+          sRea: '예: 불의와 편법에 승복하는 것은 내 자존심이 허락하지 않기',
+          aAct: '예: 이쪽도 몰래 반칙으로 복수해서 골을 넣',
+          choice: '예: 억울했지만 주장을 통해 차분하게 어필했다.',
+          reason: '예: 감정적으로 항의하다 퇴장당하면 팀에 피해를 주기 때문.'
+        },
+        rational: { act: '', reason: '' },
+        spirited: { act: '', reason: '' },
+        appetitive: { act: '' },
+        actualChoice: '',
+        actualReason: '',
+        winner: ''
+      }
+    ];
+
+    let currentScenarioIndex = 0;
+    let currentStage = 1;
+
+    function goToStage(stage) {
+      currentStage = stage;
+      document.getElementById('stage-1').classList.toggle('hidden', stage !== 1);
+      document.getElementById('stage-2').classList.toggle('hidden', stage !== 2);
+      document.getElementById('stage-3').classList.toggle('hidden', stage !== 3);
+
+      const badge = document.getElementById('step-badge');
+      if (stage === 1) badge.textContent = 'Phase 1. 세 명의 등장인물 알아보기';
+      if (stage === 2) {
+        badge.textContent = `Phase 2. 머릿속 회의 작성 (상황 ${scenarios[currentScenarioIndex].id})`;
+        renderScenarioTabs();
+        loadScenario(currentScenarioIndex);
+      }
+      if (stage === 3) {
+        badge.textContent = 'Phase 3. 최종 성찰 리포트';
+        renderSummaryReport();
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderScenarioTabs() {
+      const tabContainer = document.getElementById('scenario-tabs');
+      tabContainer.innerHTML = '';
+      scenarios.forEach((sc, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `font-jua px-3.5 py-1.5 rounded-xl text-xs transition-all ${
+          idx === currentScenarioIndex 
+            ? 'bg-indigo-600 text-white shadow-lg' 
+            : 'bg-slate-800/80 text-slate-400 hover:bg-slate-700'
+        }`;
+        btn.textContent = `${sc.icon} 상황 ${sc.id}`;
+        btn.onclick = () => {
+          saveCurrentScenarioData();
+          currentScenarioIndex = idx;
+          renderScenarioTabs();
+          loadScenario(idx);
+        };
+        tabContainer.appendChild(btn);
+      });
+    }
+
+    function loadScenario(idx) {
+      const sc = scenarios[idx];
+      document.getElementById('scenario-icon').textContent = sc.icon;
+      document.getElementById('scenario-tag').textContent = `상황 ${sc.id}`;
+      document.getElementById('scenario-desc').textContent = sc.desc;
+
+      const inRAct = document.getElementById('input-rational-act');
+      const inRRea = document.getElementById('input-rational-reason');
+      const inSAct = document.getElementById('input-spirited-act');
+      const inSRea = document.getElementById('input-spirited-reason');
+      const inAAct = document.getElementById('input-appetitive-act');
+      const inChoice = document.getElementById('input-actual-choice');
+      const inReason = document.getElementById('input-actual-reason');
+
+      inRAct.value = sc.rational.act || '';
+      inRRea.value = sc.rational.reason || '';
+      inSAct.value = sc.spirited.act || '';
+      inSRea.value = sc.spirited.reason || '';
+      inAAct.value = sc.appetitive.act || '';
+      inChoice.value = sc.actualChoice || '';
+      inReason.value = sc.actualReason || '';
+
+      inRAct.placeholder = sc.placeholders.rAct;
+      inRRea.placeholder = sc.placeholders.rRea;
+      inSAct.placeholder = sc.placeholders.sAct;
+      inSRea.placeholder = sc.placeholders.sRea;
+      inAAct.placeholder = sc.placeholders.aAct;
+      inChoice.placeholder = sc.placeholders.choice;
+      inReason.placeholder = sc.placeholders.reason;
+
+      updatePreviews();
+      updateWinnerUI(sc.winner);
+      updateNavigationButtons();
+    }
+
+    function updateNavigationButtons() {
+      const isLast = (currentScenarioIndex === scenarios.length - 1);
+      const isFirst = (currentScenarioIndex === 0);
+
+      const prevBtn = document.getElementById('btn-prev-scenario');
+      const actionText = document.getElementById('next-action-text');
+
+      if (isFirst) {
+        prevBtn.classList.add('hidden');
+      } else {
+        prevBtn.classList.remove('hidden');
+      }
+
+      if (isLast) {
+        actionText.textContent = '저장 및 최종 성찰 리포트 보기';
+      } else {
+        const nextId = scenarios[currentScenarioIndex + 1].id;
+        actionText.textContent = `저장 및 다음 상황(${nextId})으로 넘어가기`;
+      }
+
+      const badge = document.getElementById('step-badge');
+      if (currentStage === 2) {
+        badge.textContent = `Phase 2. 머릿속 회의 작성 (상황 ${scenarios[currentScenarioIndex].id})`;
+      }
+    }
+
+    function handleNextAction() {
+      saveCurrentScenarioData();
+      if (currentScenarioIndex < scenarios.length - 1) {
+        currentScenarioIndex++;
+        renderScenarioTabs();
+        loadScenario(currentScenarioIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        goToStage(3);
+      }
+    }
+
+    function goToPrevScenario() {
+      saveCurrentScenarioData();
+      if (currentScenarioIndex > 0) {
+        currentScenarioIndex--;
+        renderScenarioTabs();
+        loadScenario(currentScenarioIndex);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function updatePreviews() {
+      const rAct = document.getElementById('input-rational-act').value.trim() || '______';
+      const rRea = document.getElementById('input-rational-reason').value.trim() || '______';
+      document.getElementById('preview-rational').textContent = `“나는 ${rAct}해야 해. 왜냐하면 ${rRea}이기 때문이야.”`;
+
+      const sAct = document.getElementById('input-spirited-act').value.trim() || '______';
+      const sRea = document.getElementById('input-spirited-reason').value.trim() || '______';
+      document.getElementById('preview-spirited').textContent = `“나는 ${sAct}하고 싶어. 왜냐하면 ${sRea}.”`;
+
+      const aAct = document.getElementById('input-appetitive-act').value.trim() || '______';
+      document.getElementById('preview-appetitive').textContent = `“나는 당장 ${aAct}하고 싶어!”`;
+    }
+
+    function saveCurrentScenarioData() {
+      const sc = scenarios[currentScenarioIndex];
+      sc.rational.act = document.getElementById('input-rational-act').value;
+      sc.rational.reason = document.getElementById('input-rational-reason').value;
+
+      sc.spirited.act = document.getElementById('input-spirited-act').value;
+      sc.spirited.reason = document.getElementById('input-spirited-reason').value;
+
+      sc.appetitive.act = document.getElementById('input-appetitive-act').value;
+
+      sc.actualChoice = document.getElementById('input-actual-choice').value;
+      sc.actualReason = document.getElementById('input-actual-reason').value;
+      updatePreviews();
+    }
+
+    function fillExample(type) {
+      const p = scenarios[currentScenarioIndex].placeholders;
+      const clean = (str) => str.replace(/^예:\s*/, '');
+
+      if (type === 'rational') {
+        document.getElementById('input-rational-act').value = clean(p.rAct);
+        document.getElementById('input-rational-reason').value = clean(p.rRea);
+      } else if (type === 'spirited') {
+        document.getElementById('input-spirited-act').value = clean(p.sAct);
+        document.getElementById('input-spirited-reason').value = clean(p.sRea);
+      } else if (type === 'appetitive') {
+        document.getElementById('input-appetitive-act').value = clean(p.aAct);
+      }
+      saveCurrentScenarioData();
+    }
+
+    function setWinner(w) {
+      scenarios[currentScenarioIndex].winner = w;
+      updateWinnerUI(w);
+    }
+
+    function updateWinnerUI(w) {
+      document.querySelectorAll('.win-btn').forEach(btn => {
+        btn.classList.remove('bg-sky-600', 'text-white', 'bg-orange-600', 'bg-amber-600', 'border-transparent');
+      });
+      if (w === '이성') {
+        const btn = document.getElementById('btn-win-이성');
+        if (btn) btn.classList.add('bg-sky-600', 'text-white', 'border-transparent');
+      } else if (w === '기개') {
+        const btn = document.getElementById('btn-win-기개');
+        if (btn) btn.classList.add('bg-orange-600', 'text-white', 'border-transparent');
+      } else if (w === '욕구') {
+        const btn = document.getElementById('btn-win-욕구');
+        if (btn) btn.classList.add('bg-amber-600', 'text-white', 'border-transparent');
+      }
+    }
+
+    function renderSummaryReport() {
+      saveCurrentScenarioData();
+
+      let counts = { '이성': 0, '기개': 0, '욕구': 0 };
+      scenarios.forEach(s => {
+        if (s.winner && counts[s.winner] !== undefined) counts[s.winner]++;
+      });
+
+      const statBox = document.getElementById('stat-boxes');
+      statBox.innerHTML = `
+        <div class="p-4 rounded-2xl bg-sky-950/40 border border-sky-500/40">
+          <span class="font-jua text-xs text-sky-400 block mb-1">🧠 이성 주도</span>
+          <span class="font-jua text-3xl md:text-4xl text-white">${counts['이성']}</span> <span class="text-xs text-slate-400">/ 4회</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-orange-950/40 border border-orange-500/40">
+          <span class="font-jua text-xs text-orange-400 block mb-1">🔥 기개 주도</span>
+          <span class="font-jua text-3xl md:text-4xl text-white">${counts['기개']}</span> <span class="text-xs text-slate-400">/ 4회</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-amber-950/40 border border-amber-500/40">
+          <span class="font-jua text-xs text-amber-400 block mb-1">🍕 욕구 주도</span>
+          <span class="font-jua text-3xl md:text-4xl text-white">${counts['욕구']}</span> <span class="text-xs text-slate-400">/ 4회</span>
+        </div>
+      `;
+    }
+
+    function restartSimulation() {
+      if (confirm('모든 작성을 초기화하고 처음부터 다시 시작하시겠습니까?')) {
+        scenarios.forEach(s => {
+          s.rational.act = '';
+          s.rational.reason = '';
+          s.spirited.act = '';
+          s.spirited.reason = '';
+          s.appetitive.act = '';
+          s.actualChoice = '';
+          s.actualReason = '';
+          s.winner = '';
+        });
+        currentScenarioIndex = 0;
+        goToStage(1);
+      }
+    }
+
+    window.onload = () => {
+      goToStage(1);
+    };
+  </script>
+</body>
+</html>
